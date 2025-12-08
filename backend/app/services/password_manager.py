@@ -2,7 +2,7 @@ import bcrypt
 from app.utils.validators import is_strong_password
 
 class PasswordManager:
-    
+
     @staticmethod
     def hash_password(password: str)-> str:
         salt = bcrypt.gensalt(rounds=12)

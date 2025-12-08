@@ -36,14 +36,26 @@ class TokenManager:
 
     def verify_token(self, token:str, token_type:str="access") -> Optional[Dict]:
         try:
-            pass
+            payload = jwt.ecode(
+                token,
+                self.secret_key,
+                algorithms=[self.algorithm]
+            )
+
+            if payload.get("type") != token_type:
+                return None
+            
+            return payload
         except jwt.ExpiredSignatureError:
             return None
         except jwt.InvalidTokenError:
             return None
 
     @staticmethod
-    def verify_refersh_token(self, token_hash:str) -> bool:
-        pass
+    def verify_refersh_token(token:str, token_hash:str) -> bool:
+        try:
+            bcrypt.checkpw(token.encode(), token_hash.encode())
+        except Exception:
+            return False
 
 token_manager = TokenManager() #TODO: global token manager instance
