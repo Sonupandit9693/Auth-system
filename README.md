@@ -2,7 +2,7 @@
 
 A complete authentication system built from scratch with FastAPI (backend) and Next.js (frontend).
 
-## 🚀 Features
+## Features
 
 - ✅ User Registration & Login
 - ✅ JWT Token Authentication (Access + Refresh)
@@ -129,58 +129,6 @@ Frontend will run on: **http://localhost:3000**
 
 ---
 
-## 🧪 Testing the Application
-
-### 1. Register a New User
-
-- Go to: http://localhost:3000/register
-- Fill in the form:
-  - Email: `test@example.com`
-  - Username: `testuser`
-  - Password: `Test@12345678` (must meet requirements)
-- Click "Register"
-
-### 2. Login
-
-- Go to: http://localhost:3000/login
-- Enter your credentials
-- Click "Login"
-
-### 3. Access Dashboard
-
-- After login, you'll be redirected to the dashboard
-- You'll see your user information
-- Click "Test Protected API" to test token authentication
-
-### 4. Test API Directly
-
-```bash
-# Register user
-curl -X POST http://localhost:8000/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "api@example.com",
-    "username": "apiuser",
-    "password": "ApiTest@12345"
-  }'
-
-# Login
-curl -X POST http://localhost:8000/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email_or_username": "apiuser",
-    "password": "ApiTest@12345"
-  }'
-
-# Save the access_token from response, then:
-
-# Access protected route
-curl -X GET http://localhost:8000/auth/protected \
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN_HERE"
-```
-
----
-
 ## 📊 Database Schema
 
 The system uses 4 main tables:
@@ -259,41 +207,6 @@ FRONTEND_URL=http://localhost:3000
 
 ---
 
-## 📝 Environment Variables
-
-### Backend (.env)
-
-```bash
-DATABASE_HOST=localhost
-DATABASE_PORT=5432
-DATABASE_NAME=authdb
-DATABASE_USER=authuser
-DATABASE_PASSWORD=authpassword
-
-JWT_SECRET_KEY=your-secret-key-here
-JWT_ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=15
-REFRESH_TOKEN_EXPIRE_DAYS=7
-
-ENVIRONMENT=development
-API_HOST=0.0.0.0
-API_PORT=8000
-
-FRONTEND_URL=http://localhost:3000
-```
-
-### Generate Secure Keys
-
-```bash
-# Generate JWT secret
-openssl rand -hex 32
-
-# Or use Python
-python -c "import secrets; print(secrets.token_hex(32))"
-```
-
----
-
 ## 🚀 Production Deployment
 
 ### Backend
@@ -326,7 +239,7 @@ npm start
 
 ---
 
-## 📚 API Endpoints
+## API Endpoints
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
@@ -341,7 +254,7 @@ npm start
 
 ---
 
-## 🎓 Learning Resources
+## Learning Resources
 
 This project demonstrates:
 
@@ -355,29 +268,3 @@ This project demonstrates:
 - Frontend-backend integration
 
 ---
-
-## 📄 License
-
-MIT License - Feel free to use for learning and interviews!
-
----
-
-## 🤝 Contributing
-
-This is a learning project. Feel free to:
-- Add features (email verification, password reset)
-- Improve security
-- Optimize performance
-- Add tests
-
----
-
-## 📞 Support
-
-If you encounter issues:
-1. Check the troubleshooting section
-2. Review the logs: `docker-compose logs`
-3. Ensure all dependencies are installed
-4. Verify database is running
-
-Happy coding! 🚀
