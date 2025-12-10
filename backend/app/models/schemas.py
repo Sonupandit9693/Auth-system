@@ -1,18 +1,18 @@
-from pydantic import BaseModel, Emailstr, Field
+from pydantic import BaseModel, EmailStr, Field
 from typing import Optional, Dict
 
 
 #request model
-class RegisterRequset(BaseModel):
-    email: Emailstr
+class RegisterRequest(BaseModel):
+    email: EmailStr
     username: str = Field(..., min_length=3, max_length=50)
     password: str = Field(..., min_length=12)
 
-class LoginRequset(BaseModel):
+class LoginRequest(BaseModel):
     email_or_username: str
     password: str
 
-class RefreshTokenRequset(BaseModel):
+class RefreshTokenRequest(BaseModel):
     refresh_token: str
 
 
@@ -23,11 +23,11 @@ class TokenResponse(BaseModel):
     token_type: str = "Bearer"
     expires_in: int
 
-class MessageReposne(BaseModel):
+class MessageResponse(BaseModel):
     message:str
     user_id:Optional[str]= None
 
-class UsetResponse(BaseModel):
+class UserResponse(BaseModel):
     user_id: str
     email: str
     username: str

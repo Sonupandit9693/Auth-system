@@ -57,8 +57,8 @@ class AuthService:
 
         try:
             cursor.execute("""
-                INSERT INTO users (email, username, password_hash),
-                VALUES (%s, %s, %s),
+                INSERT INTO users (email, username, password_hash)
+                VALUES (%s, %s, %s)
                 RETURNING id
             """, (email.lower(), username.lower(), password_hash))
 
@@ -68,7 +68,7 @@ class AuthService:
             cursor.execute("""
                 INSERT INTO audit_logs
                 (user_id, action, ip_address, user_agent, status)
-                VALUES (%s, 'register', %s, %s, 'sucess)
+                VALUES (%s, 'register', %s, %s, 'sucess')
             """, (user_id, ip_address, user_agent))
 
             self.db.commit()
@@ -156,7 +156,7 @@ class AuthService:
             user_id,
             refresh_token_hash,
             f'{{"ip": "{ip_address}", "user_agent": "{user_agent}"}}',
-            datetime.utcnow() + self.token_manager.refresh_token_expire
+            datetime.utcnow() + self.token_manager.refersh_token_expires
         ))
 
         #audit log

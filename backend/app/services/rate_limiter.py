@@ -18,7 +18,10 @@ class RateLimiter:
             now = datetime.utcnow()
 
             #clean old attempts outside the window
-            self.attempts[indentifier] = [timestamp for timestamp in self.attempts[indentifier] if now  - timestamp < self.window]
+            self.attempts[indentifier] = [
+                ts for ts in self.attempts[indentifier]
+                if now - ts < timedelta(seconds=self.window)
+            ]
         
             if len(self.attempts[indentifier]) >= self.max_attempts:
                 oldest = self.attempts[indentifier][0]
@@ -38,4 +41,4 @@ class RateLimiter:
                 del self.attempts[indentifier]
 
 
-reate_limiter = RateLimiter(max_attempts=5, window_seconds=60)
+rate_limiter = RateLimiter(max_attempts=5, window_seconds=60)

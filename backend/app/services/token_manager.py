@@ -36,23 +36,22 @@ class TokenManager:
 
     def verify_token(self, token:str, token_type:str="access") -> Optional[Dict]:
         try:
-            payload = jwt.ecode(
+            payload = jwt.decode(
                 token,
                 self.secret_key,
-                algorithms=[self.algorithm]
+                algorithm=[self.algorithm]
             )
 
             if payload.get("type") != token_type:
                 return None
             
-            return payload
         except jwt.ExpiredSignatureError:
             return None
         except jwt.InvalidTokenError:
             return None
 
     @staticmethod
-    def verify_refersh_token(token:str, token_hash:str) -> bool:
+    def verify_refresh_token(token:str, token_hash:str) -> bool:
         try:
             bcrypt.checkpw(token.encode(), token_hash.encode())
         except Exception:

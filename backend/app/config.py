@@ -10,7 +10,7 @@ class Settings():
     DATABASE_PORT: int = int(os.getenv("DATABAE_PORT", 5432))
     DATABASE_NAME: str = os.getenv("DATABASE_NAME", "authdb")
     DATABASE_USER: str = os.getenv("DATABASE_USER", "authuser")
-    DATABASE_PASSWORD: str = os.getenv("DATABASE_PASSWORD", "authpassord")
+    DATABASE_PASSWORD: str = os.getenv("DATABASE_PASSWORD", "authpassword")
 
     @property
     def DATABASE_URL(self)-> str:

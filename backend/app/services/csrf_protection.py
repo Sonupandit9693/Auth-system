@@ -3,7 +3,9 @@ import hmac
 import hashlib
 
 class CSRFProtection:
-    """CSRF token generation and validation"""
+    """
+    CSRF token generation and validation
+    """
     
     def __init__(self, secret_key: str):
         self.secret_key = secret_key
